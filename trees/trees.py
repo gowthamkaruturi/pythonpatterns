@@ -92,3 +92,18 @@ class Trees:
       self.dfs(i-1,j,grid)
       self.dfs(i,j+1,grid)
       self.dfs(i,j-1,grid)
+
+  def isValidBST(self, root: Optional[TreeNode]) -> bool:
+      if not root:
+          return True
+      stack =[(root,-float('inf'),float('inf'))]
+      while(len(stack)):
+          node, minimum, maximum = stack.pop()
+          
+          if node.val <= minimum or node.val >= maximum:
+              return False
+          if node.left:
+              stack.append((node.left, minimum, node.val))
+          if node.right:
+              stack.append((node.right,node.val,maximum))
+      return True

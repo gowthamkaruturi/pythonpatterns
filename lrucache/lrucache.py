@@ -87,7 +87,7 @@ class LRUCacheOrderedDict():
 if __name__ == "__main__":
   cache = LRUCache(3)
   cache.put(1,1)
-  print(cache.)
+  print(cache)
   cache.put(3,3)
   print(cache)
   cache.put(3,3)
