@@ -1,5 +1,6 @@
 from collections import deque
 from typing import Optional,List
+#from graphs.graph import TrieNode
 
 
 class TreeNode:
@@ -7,6 +8,12 @@ class TreeNode:
     self.val= val
     self.left = left
     self.right= right
+  
+  def getVal(self):
+    return self.val
+  
+  def setLeft(self, node:TrieNode):
+    self.left = node
    
 class Trees:
   def swap(self, root:TreeNode):

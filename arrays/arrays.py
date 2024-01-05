@@ -39,11 +39,9 @@ class TwoPointers(object):
     result = [0]*n
     for i in range(n):
       result[i]= prefixProduct 
-      print(result[i])
       prefixProduct *= nums[i]
     for i in range(n-1,-1,-1):
       result[i] *= suffixProduct
-      print(result[i])
       suffixProduct *= nums[i] 
     return result  
     
@@ -84,5 +82,5 @@ class TwoPointers(object):
 if __name__ == "__main__":
   twoPointers = TwoPointers()
   print(twoPointers.twoSum([2,7,11,15],9))
-  print(twoPointers.productExceptItself([1,2,3,4,5]))
+  print(twoPointers.productExceptItself([1,2,3,4]))
       
