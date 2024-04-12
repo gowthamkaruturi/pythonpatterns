@@ -1,5 +1,5 @@
-from arrays.arrays import TwoPointers
+from arrays.arrays import Arrays
 
 if __name__ == "__main___":
-    twoPointers = TwoPointers()
+    twoPointers = Arrays()
     twoPointers.productExceptItself([1, 2, 3, 4])

@@ -1,5 +1,5 @@
 from typing import List
-class Solution(object):
+class TwoPointers(object):
   
   def isPallindrome(self, s :str) -> bool:
     s = str.lower(''.join(e for e in s if e.isalnum()))
@@ -57,7 +57,8 @@ class Solution(object):
             right -= 1
     return maxArea
   
+  
 if __name__ == "__main__":
-  sol = Solution()
+  sol = TwoPointers()
   sol.isPallindrome("A man, a plan, a canal: Panama")
   sol.threeSum()

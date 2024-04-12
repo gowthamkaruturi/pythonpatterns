@@ -25,11 +25,39 @@ class Solution(object):
     # if it is present in the dict shift the left operator to the index where the seen value is present
     # calculate the max length always to update the maxlength to see if the maxlength is calculated.
     # always the update the seen value from right ppointer 
-    left, right ,maximumLength, seen = 0,1,0,{}
+    left, right ,maximumLength, seen = 0,0,0,{}
     while right < len(s):
       if s[right] in seen:
-          left = seen[right]+1
-      maximumlength = max(maximumlength, right-left+1)
+          left = seen[s[right]]+1
+      maximumLength = max(maximumLength, right-left+1)
       seen[s[right]]=right
       right +=1 
     return maximumLength
+  
+  
+  def characterReplacement(self, s:str, k:int) -> int:
+    count = {}
+    result = 0
+    left =0
+    for right in range(len(s)):
+      count[s[right]] = 1+ count.get(s[right],0)
+      if (right-left+1) -max(count.values) >k:
+        count[s[left]] -= 1
+        left += 1 
+      result = max(result , right-left+1)
+      return result       
+    
+  def maxProfit(self, prices:List[int]) -> int:
+    maxProfit =0
+    left =0
+    right =1
+    while right < len(prices):
+      if prices[left] < prices[right]:
+        maxProfit = max(max , prices[right]-prices[left])
+      else:
+        left = right
+      right += 1
+    return maxProfit
+
+  if __name__ == "__main__":
+    

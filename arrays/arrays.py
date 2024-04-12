@@ -1,6 +1,6 @@
 from collections import defaultdict,Counter,OrderedDict
 from typing import List
-class TwoPointers(object):
+class Arrays(object):
   def twoSum(self, nums: List[int], target: int) -> List[int]:
       required = {}
       for i ,n in enumerate(nums):
@@ -165,24 +165,98 @@ class TwoPointers(object):
     return second_maximum
     
   def findTheNLargestelement(self, lst:list,N:int)-> int:
+     lst = set(lst)
      if len(lst)<2:
        return list[0]
     
      while N>1:
-         max = lst.remove(max(lst))
-         N -=1
+        lst.remove(max(lst))
+        N -=1
      return max(lst)
+  
+  def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+      result = [0]*(len(nums)+1)
+      actualResult = []
+      frequency = {}
+      for num in nums:
+          frequency[num]= frequency.get(num,0)+1
+      for key,val in frequency.items():
+          if result[val]:
+              result[val].append(key)
+          else:
+              result[val] = [key]
+      print(result)
+      for res in result[::-1]:
+          if k ==0:
+              break
+          else:
+              if isinstance(res,list):
+                  
+                  for e in res:
+                      actualResult.append(e)
+                      k -= 1
+      return  actualResult
+  def rotateArraysRight(self,lst:list, k :int) -> list:
+    if k == 0 :
+      return lst
+    result = lst[len(lst)-k:]
+    result += lst[:len(lst)-k]
+    return result
+  # from collections import deque
+  #   result = deque()
+  #   if k == 0 :
+  #     return lst
+  #   e = deque(lst)
+  #   while k >0:
+  #     result.append(e.popleft())
+  #     k -=1
+    
+  #   while (len(e) > 0 ):
+  #     result.appendleft(e.pop())
+   
+  #   return result
+  
+  
+  def rotateArraysLeft(self,lst:list, k :int) -> list:
+    from collections import deque
+    result = deque()
+    if k == 0 :
+      return lst
+    e = deque(lst)
+    while k >0:
+      result.append(e.popleft())
+      k -=1
+    
+    while (len(e) > 0 ):
+      result.appendleft(e.pop())
+    return result
 
-     
-      
-
+  def isValidSoduku(self, board:List[List[str]]) -> bool:
+    cols = defaultdict(set)
+    rows = defaultdict(set)
+    squares = defaultdict(set)
+    
+    for r in range(9):
+      for c in range(9):
+        if board[r][c] == ".":
+          continue
+        if board[r][c] in rows[r] or board[r][c] in cols[c] or board[r][c] in squares[r//3,c//3]:
+          return False
+        rows[r] = board[r][c]
+        cols[c] = board[r][c]
+        squares[(r//3,c//3)].add(board[r][c])
+   
+    return True
 if __name__ == "__main__":
-  twoPointers = TwoPointers()
+  twoPointers = Arrays()
   #print(twoPointers.twoSum([2,7,11,15],9))
   # print(twoPointers.productExceptItself([1,2,3,4,5]))
   #print(twoPointers.merge_lists([1,3,4,5],[2,6,7,8] ))
   #print(twoPointers.sumOfTwoNumbers([1,2,3,4],5))
   #print(twoPointers.firstNonRepeating([4, 5, 1, 2, 0, 4]))
-  print(twoPointers.findTheSecondLargestelement([4, 5, 1, 2, 0, 4]))
-  print(twoPointers.findTheNLargestelementV2([4, 5, 1, 2, 0, 4]))
-      
+  # print(twoPointers.findTheSecondLargestelement([4, 5, 1, 2, 0, 4]))
+  # print(twoPointers.findTheNLargestelement([4, 5, 1, 2, 0, 4],3))
+  # print(twoPointers.topKFrequent())
+  #print(twoPointers.rotateArraysRight([1, 2, 3, 4, 5], 2))
+  print(twoPointers.rotateArraysLeft([1, 2, 3, 4, 5,8,9], 2))
+  
